@@ -5004,6 +5004,33 @@ ul {
 	color: #797979;
 }
 
+.order_table {
+	width: 100%;
+	
+  }
+  
+  #order_tr {
+	font-size: 14px;
+	color: #797979;
+	font-weight: normal;
+	
+	display: block;
+	line-height: 42px;
+	width: 100%;
+  }
+  
+  #left{
+	text-align: left;
+	width: 50%;
+  }
+  
+  
+  
+  #right{
+	text-align: right;
+	width: 1%;
+  }
+
 /* line 1570, ../../01 cl html template/03_jun 2019/188_Aranoz shop_html/sass/_product.scss */
 .billing_details .contact_form .form-group .country_select .list {
 	width: 100%;
