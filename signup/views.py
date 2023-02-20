@@ -11,3 +11,6 @@ def sign_up(request):
 
 def confirmation(request):
     return render(request,'./signup/confirmation.html')
+
+def tracking(request):
+    return render(request,'./signup/tracking.html')
