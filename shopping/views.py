@@ -7,5 +7,9 @@ def check_out(request):
     return render(request,'./shopping/checkout.html')
 
 # Shopping confirmation section
+def cart(request):
+    return render(request,'./shopping/cart.html')
+
+# Shopping confirmation section
 def confirmation(request):
     return render(request,'./shopping/confirmation.html')

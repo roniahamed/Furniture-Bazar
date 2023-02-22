@@ -1,0 +1,185 @@
+{% extends 'common_code/index.html' %}
+{% load static %}
+{% block content %}
+ <!-- breadcrumb start-->
+ <section class="breadcrumb breadcrumb_bg">
+    <div class="container">
+      <div class="row justify-content-center">
+        <div class="col-lg-8">
+          <div class="breadcrumb_iner">
+            <div class="breadcrumb_iner_item">
+              <h2>Cart Products</h2>
+              <p>Home <span>-</span>Cart Products</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <!-- breadcrumb start-->
+<div style="padding: 50px;">
+
+
+    <div class="container">
+    
+        <div class="cart">
+    
+            <div class="products">
+    
+                <div class="product">
+    
+                    <img src="{% static 'img/product/product_4.png' %}">
+    
+                    <div class="product-info">
+    
+                        <h3 class="product-name">Picaso</h3>
+    
+                        <h4 class="product-price">$ 150</h4>
+    
+                        <h4 class="product-offer">20%</h4>
+    
+                        <p class="product-quantity">Qnt: <input value="1" name="">
+    
+                        <p class="product-remove">
+    
+                            <i class="fa fa-trash" aria-hidden="true"></i>
+    
+                            <span class="remove">Remove</span>
+    
+                        </p>
+    
+                    </div>
+    
+                </div>
+    
+                <div class="product">
+    
+                    <img src="{% static 'img/product/product_1.png' %}">
+    
+                    <div class="product-info">
+    
+                        <h3 class="product-name">Olivia</h3>
+    
+                        <h4 class="product-price">$ 150</h4>
+    
+                        <h4 class="product-offer">10%</h4>
+    
+                        <p class="product-quantity">Qnt: <input value="1" name="">
+    
+                        <p class="product-remove">
+    
+                            <i class="fa fa-trash" aria-hidden="true"></i>
+    
+                            <span class="remove">Remove</span>
+    
+                        </p>
+    
+                    </div>
+    
+                </div>
+    
+            </div>
+    
+            <div class="cart-total">
+    
+                <p>
+    
+                    <span>Subtotal</span>
+    
+                    <span>$ 300</span>
+    
+                </p>
+    
+                <p>
+    
+                    <span>Items</span>
+    
+                    <span>2</span>
+    
+                </p>
+    
+                <p>
+    
+                    <span>Delivery</span>
+    
+                    <span>$ 15</span>
+    
+                </p>
+                <p>
+                    <span>Discount</span>
+    
+                    <span>$ 90</span>
+    
+                </p>
+                <p>
+    
+                    <span>Total</span>
+                    <span>$ 225</span>
+    
+                </p>
+    
+                <span><a href="#" style="border-radius: 10px;">Proceed to Checkout</a></span>
+    
+            </div>
+    
+        </div>
+        
+    </div>
+</div>
+
+    <!-- product_list part start-->
+    <section class="product_list best_seller section_padding">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-lg-12">
+                    <div class="section_tittle text-center">
+                        <h2>Related Products<span>
+                    </div>
+                </div>
+            </div>
+            <div class="row align-items-center justify-content-between">
+                <div class="col-lg-12">
+                    <div class="best_product_slider owl-carousel">
+                        <div class="single_product_item">
+                            <img src="{% static 'img/product/product_1.png' %}" alt="">
+                            <div class="single_product_text">
+                                <h4>Olivia</h4>
+                                <h3>$150.00</h3>
+                            </div>
+                        </div>
+                        <div class="single_product_item">
+                            <img src="{% static 'img/product/product_2.png' %}" alt="">
+                            <div class="single_product_text">
+                                <h4>Tangerine</h4>
+                                <h3>$150.00</h3>
+                            </div>
+                        </div>
+                        <div class="single_product_item">
+                            <img src="{% static 'img/product/product_3.png' %}" alt="">
+                            <div class="single_product_text">
+                                <h4>Hourglass Seater</h4>
+                                <h3>$150.00</h3>
+                            </div>
+                        </div>
+                        <div class="single_product_item">
+                            <img src="{% static 'img/product/product_4.png' %}" alt="">
+                            <div class="single_product_text">
+                                <h4>Picaso</h4>
+                                <h3>$150.00</h3>
+                            </div>
+                        </div>
+                        <div class="single_product_item">
+                            <img src="{% static 'img/product/product_5.png' %}" alt="">
+                            <div class="single_product_text">
+                                <h4>The Great White Seat</h4>
+                                <h3>$150.00</h3>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- product_list part end-->
+
+{% endblock content %}
