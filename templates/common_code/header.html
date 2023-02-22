@@ -97,23 +97,13 @@
                             ><i class="ti-search"></i
                         ></a>
                         <a href=""><i class="ti-heart"></i></a>
-                        <div class="dropdown cart">
+                        <div class="cart">
                             <a
-                                class="dropdown-toggle"
-                                href="#"
-                                id="navbarDropdown3"
-                                role="button"
-                                data-toggle="dropdown"
-                                aria-haspopup="true"
-                                aria-expanded="false"
+                                
+                                href="{% url 'cart' %}"
                             >
                                 <i class="fas fa-cart-plus"></i>
                             </a>
-                            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                <div class="single_product">
-
-                                </div>
-                            </div>
                         </div>
                         <div class="dropdown cart">
                             <a
@@ -134,17 +124,14 @@
                                     <a class="dropdown-item" href="{% url 'logpage' %}">
                                         login</a
                                     >
-                                    <!-- <a class="dropdown-item" href="#"
+                                    <a class="dropdown-item" href="{% url 'tracking' %}"
                                         >tracking</a
-                                    > -->
+                                    >
                                     <a class="dropdown-item" href="{% url 'checkout' %}"
                                         >product checkout</a
                                     >
-                                    <a class="dropdown-item" href="#"
+                                    <a class="dropdown-item" href="{% url 'cart' %}"
                                         >shopping cart</a
-                                    >
-                                    <a class="dropdown-item" href="{% url 'confirmation' %}"
-                                        >confirmation</a
                                     >
                                     <!-- <a class="dropdown-item" href="#"
                                         >elements</a
