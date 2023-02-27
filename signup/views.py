@@ -1,5 +1,4 @@
-from email import message
-from django.shortcuts import render, HttpResponse, redirect,HttpResponseRedirect
+from django.shortcuts import render,redirect,HttpResponseRedirect
 from django.contrib.auth.models import User,auth
 from django.contrib.auth import authenticate,login,logout
 from django.contrib.auth.decorators import login_required
@@ -8,7 +7,9 @@ from django.contrib import messages
 
 # Create your views here.
 def log_in(request):
-    if request.method=="POST":
+    if request.user.is_authenticated:
+        return redirect('/')
+    elif request.method=="POST":
         username = request.POST['username']
         password = request.POST['password']
         if username !="" and User.objects.filter(username=username).exists():
@@ -28,7 +29,9 @@ def log_in(request):
 
 # Sign up page 
 def sign_up(request):
-    if request.method=='POST':
+    if request.user.is_authenticated:
+        return redirect('/')
+    elif request.method=='POST':
         username = request.POST['username']
         first_name = request.POST['first_name']
         last_name = request.POST['last_name']
@@ -58,6 +61,11 @@ def sign_up(request):
             messages.info(request,"Your password and confirm password does't match")
             return redirect('signup')
     return render(request,'./signup/signup.html')
+
+#Log_out 
+def Logout_user(request):
+    logout(request)
+    return redirect('/')
 
 
 #Tracking Page. 
