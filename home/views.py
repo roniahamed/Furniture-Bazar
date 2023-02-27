@@ -1,12 +1,21 @@
+from itertools import product
 from django.shortcuts import render
 from products.models import Products
+from products.views import category
 # Create your views here.
 
 def home_page(request):
     
-    slider = Products.objects.all()
+    slider = Products.objects.filter(category='slide')
+    feature = Products.objects.filter(category='sofas')
+    products1 = Products.objects.all()
+    
     context = {
-        'slider':slider
+        'slider':slider,
+        'features':feature,
+        'products1':products1,
     }
     
     return render(request,'./home/home.html',context)
+
+

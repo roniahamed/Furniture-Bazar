@@ -5,16 +5,19 @@ from django.db import models
 
 class Products(models.Model):
     category_choice =(
+        ('slide','Slide'),
+        ('feature','Feature'),
         ('sofas','Sofa'),
         ('chairs','Chairs'),
         ('tables','Tables'),
         ('storage','Storage'),
+        ('desks','Desks'),
+
         ('beds','Beds'),
         ('mattresses','Mattresses'),
         ('dressers','Dressers'),
         ('dressers','Dressers'),
         ('nightstands','Nightstands'),
-        ('desks','Desks'),
     )
     quantity = models.IntegerField(blank=True,null=True)
     name = models.CharField(max_length=300,blank=True,null = True)
