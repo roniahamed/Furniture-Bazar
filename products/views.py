@@ -6,13 +6,11 @@ from products.models import Products
 
 # Category sector
 def category(request):
-    return render(request,'products/category.html')
-
-def all_product(request):
     products = Products.objects.all()
     context = {
         'products':products
     }
+    return render(request,'products/category.html',context)
     
 #single Product details
 def single_product(request):
