@@ -7,6 +7,7 @@ from products.models import Products
 # Category sector
 def category(request):
     products = Products.objects.all()
+    products =Products.objects.all().order_by('-date_added')[:9]
     context = {
         'products':products
     }
