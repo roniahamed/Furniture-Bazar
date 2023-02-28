@@ -9,7 +9,6 @@ __pycache__/
 
 db.sqlite3
 db.sqlite3-journal
-media
 migrations
 /__pycache__/
 # If your build process includes running collectstatic, then you probably don't need or want to include staticfiles/
