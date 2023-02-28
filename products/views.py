@@ -8,7 +8,12 @@ from products.models import Products
 def category(request):
     return render(request,'products/category.html')
 
-
+def all_product(request):
+    products = Products.objects.all()
+    context = {
+        'products':products
+    }
+    
 #single Product details
 def single_product(request):
     return render(request,'products/single-product.html')
