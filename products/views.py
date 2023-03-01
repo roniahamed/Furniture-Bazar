@@ -15,6 +15,10 @@ def all_product(request):
     }
     
 #single Product details
-def single_product(request):
-    return render(request,'products/single-product.html')
+def single_product_details(request,id):
+    single_product = Products.objects.get(id=id)
+    context={
+        'single_product':single_product
+    }
+    return render(request,'products/single-product.html',context)
 

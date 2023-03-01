@@ -56,9 +56,9 @@
                                     <a class="dropdown-item" href="{% url 'category' %}">
                                         shop category</a
                                     >
-                                    <a class="dropdown-item" href="{% url 'single_product' %}"
+                                    {% comment %} <a class="dropdown-item" href="{% url 'single_product' %}"
                                         >product details</a
-                                    >
+                                    > {% endcomment %}
                                 </div>
                             </li>
                             
@@ -155,12 +155,14 @@
     </div>
     <div class="search_input" id="search_input_box">
         <div class="container">
-            <form class="d-flex justify-content-between search-inner">
+            <form class="d-flex justify-content-between search-inner" action="{% url 'search' %}" method='get'>
                 <input
                     type="text"
                     class="form-control"
                     id="search_input"
                     placeholder="Search Here"
+                    name ="keywords"
+                    value="{{value}}"
                 />
                 <button type="submit" class="btn"></button>
                 <span

@@ -48,6 +48,8 @@ INSTALLED_APPS = [
     'signup',
     'store',
     'contact',
+    'searching',
+    
 ]
 
 MIDDLEWARE = [
