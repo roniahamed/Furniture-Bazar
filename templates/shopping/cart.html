@@ -1,4 +1,5 @@
 {% extends 'common_code/index.html' %}
+{% load cart_product %}
 {% load static %}
 {% block content %}
  <!-- breadcrumb start-->
@@ -23,22 +24,28 @@
     <div class="container">
     
         <div class="cart">
+            
+            
+            
+            
     
             <div class="products">
-    
+                {% if request.user.is_authenticated %}
+            
+                {% for cart in carts %}
                 <div class="product">
     
-                    <img src="{% static 'img/product/product_4.png' %}">
+                    <img src="{{cart.product.image.url}}">
     
                     <div class="product-info">
     
-                        <h3 class="product-name">Picaso</h3>
+                        <h3 class="product-name">{{cart.product.name}}</h3>
     
-                        <h4 class="product-price">$ 150</h4>
+                        <h4 class="product-price">$ {{cart.get_total}}</h4>
     
                         <h4 class="product-offer">20%</h4>
     
-                        <p class="product-quantity">Qnt: <input value="1" name="">
+                        <p class="product-quantity">Qnt: <input value="{{cart.quantity}}" name="">
     
                         <p class="product-remove">
     
@@ -51,32 +58,10 @@
                     </div>
     
                 </div>
+                {% endfor %}
+                {% endif %}
     
-                <div class="product">
-    
-                    <img src="{% static 'img/product/product_1.png' %}">
-    
-                    <div class="product-info">
-    
-                        <h3 class="product-name">Olivia</h3>
-    
-                        <h4 class="product-price">$ 150</h4>
-    
-                        <h4 class="product-offer">10%</h4>
-    
-                        <p class="product-quantity">Qnt: <input value="1" name="">
-    
-                        <p class="product-remove">
-    
-                            <i class="fa fa-trash" aria-hidden="true"></i>
-    
-                            <span class="remove">Remove</span>
-    
-                        </p>
-    
-                    </div>
-    
-                </div>
+                
     
             </div>
     
@@ -85,8 +70,10 @@
                 <p>
     
                     <span>Subtotal</span>
-    
-                    <span>$ 300</span>
+                 <span>$ 300</span>
+                    
+                    
+                   
     
                 </p>
     

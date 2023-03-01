@@ -200,7 +200,7 @@
                                 <div class="single_product_text">
                                     <h4>{{product.name}}</h4>     
                                     <h3>{{product.price}}</h3>
-                                    <a href="#" class="add_cart">+ add to cart<i class="ti-heart"></i></a>
+                                    <a href="{% url 'shopping:add_to_cart' pk=product.pk %}" class="add_cart">+ add to cart<i class="ti-heart"></i></a>
                                 </div>
                             </div>
                         </div>
