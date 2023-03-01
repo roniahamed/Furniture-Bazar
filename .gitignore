@@ -1,12 +1,12 @@
 
-
+migrations 
 __pycache__/
 ### Django ###
 *.log
 *.pot
 *.pyc
 __pycache__/
-
+media
 db.sqlite3
 db.sqlite3-journal
 migrations
