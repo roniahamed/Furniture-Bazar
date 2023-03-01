@@ -1,0 +1,45 @@
+.section1{
+    width: 100%;padding: 78px 0px;background-color: white;
+}
+
+.div1{
+    width: 1130px;
+        max-width: 95%;
+        margin: 0 auto;
+        display: flex;
+        align-items: center;
+        justify-content: space-around;
+}
+
+
+.about_img{
+    height: auto;width: 420px;
+}
+
+
+.div2{
+    width: 550px;
+}
+
+.about_h1{
+    color: black;
+    font-size: 80px;
+    text-transform: capitalize;
+    margin-bottom: 20px;
+}
+
+.about_h5{
+    color: black;
+    font-size: 25px;
+    text-transform: capitalize;
+    margin-bottom: 25px;
+    letter-spacing: 2px;
+}
+
+.about_p{
+    color: black;
+    letter-spacing: 1px;
+    line-height: 28px;
+    font-size: 18px;
+    margin-bottom: 45px;
+}
