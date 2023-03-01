@@ -50,6 +50,7 @@ INSTALLED_APPS = [
     'contact',
     'searching',
     
+    'about'
 ]
 
 MIDDLEWARE = [

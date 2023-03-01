@@ -6,13 +6,12 @@ from products.models import Products
 
 # Category sector
 def category(request):
-    return render(request,'products/category.html')
-
-def all_product(request):
     products = Products.objects.all()
+    products =Products.objects.all().order_by('-date_added')[:9]
     context = {
         'products':products
     }
+    return render(request,'products/category.html',context)
     
 #single Product details
 def single_product_details(request,id):
