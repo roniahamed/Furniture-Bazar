@@ -20,8 +20,9 @@
                     <div class="single_banner_slider">
                         
                         <div class="row">
-                            <div class="banner_img d-none d-lg-block">
-                                <img src="{{slid.image.url}}" alt=""  style="height: 430px;object-position: center;">
+                            <div class="banner_img d-none d-lg-block" style="width:705px; height: 352px;">
+                                <img src="{{slid.image.url}}" alt=""  style="width:100%; height: 100%;object-fit: cover;
+                                object-position: center; border-radius:10px;">
                             </div>
                             <div class="col-lg-5 col-md-8">
                                 <div class="banner_text">                
@@ -49,7 +50,7 @@
         </div>
     </div>
 </section>
-<!-- banner part start-->
+<!-- banner part End-->
 
 <!-- feature_part start-->
 <section class="feature_part padding_top">
@@ -65,7 +66,7 @@
 <!--start dynamic Featured product show--> 
             {% for feature in features %}
             <div class="col-lg-7 col-sm-6">
-                <div class="single_feature_post_text">
+                <div class="single_feature_post_text"style="border-radius:8px;">
                     <p>Premium Quality</p>
                     <h3>Latest foam Sofa</h3>
                     <a href="#" class="feature_btn"
@@ -79,7 +80,7 @@
 <!--End dynamic Featured product show--> 
 
             <div class="col-lg-5 col-sm-6">
-                <div class="single_feature_post_text">
+                <div class="single_feature_post_text" style="border-radius:8px;">
                     <p>Premium Quality</p>
                     <h3>Latest foam Sofa</h3>
                     <a href="#" class="feature_btn"
@@ -89,7 +90,7 @@
                 </div>
             </div>
             <div class="col-lg-5 col-sm-6">
-                <div class="single_feature_post_text">
+                <div class="single_feature_post_text" style="border-radius:8px;">
                     <p>Premium Quality</p>
                     <h3>Latest foam Sofa</h3>
                     <a href="#" class="feature_btn"
@@ -99,7 +100,7 @@
                 </div>
             </div>
             <div class="col-lg-7 col-sm-6">
-                <div class="single_feature_post_text">
+                <div class="single_feature_post_text" style="border-radius:8px;">
                     <p>Premium Quality</p>
                     <h3>Latest foam Sofa</h3>
                     <a href="#" class="feature_btn"
@@ -133,13 +134,16 @@
 <!-- Start to awesome dynamic-->
                         {% for product in  products1 %}
                             <div class="col-lg-3 col-sm-6">
-                                <div class="single_product_item">
+                                <div class="single_product_item" >
                                     <a href="{% url 'single_product' product.id %}">
+                                        <div style="width: 270px;px; height: 287px;">
                                     <img
                                         src="{{product.image.url}}"
-                                        alt=""
+                                        alt="" style="width:100%; height: 100%;object-fit: cover;
+                                        object-position: center; border-radius:10px;"
                                     />
-                                </a>
+                                        </div>
+                                    </a>
                                     <div class="single_product_text">
                                         <h4>{{product.name}}</h4>
                                         <h3>${{product.price}}</h3>
