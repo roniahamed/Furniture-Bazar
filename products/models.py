@@ -12,6 +12,7 @@ class Products(models.Model):
     title = models.CharField(max_length=250,null=True,blank=True)
     category = models.ForeignKey(Category, on_delete=models.CASCADE, default=False, null=True)
     quantity = models.IntegerField(blank=True,null=True)
+    discount = models.FloatField(blank=True,null=True)
     description = models.TextField(blank=True,null=True)
     price = models.DecimalField( max_digits=9, decimal_places=2,blank=True,null=True)
     is_approve = models.BooleanField(default=True)
