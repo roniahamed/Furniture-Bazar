@@ -196,11 +196,17 @@
                         {% for product in products %}
                         <div class="col-lg-4 col-sm-6">
                             <div class="single_product_item">
-                                <img src="{{product.image.url}}" alt="">
+                                <div style="width: 270px;px; height: 287px;">
+                                    <img
+                                        src="{{product.image.url}}"
+                                        alt="" style="width:100%; height: 100%;object-fit: cover;
+                                        object-position: center; border-radius:10px;"
+                                    />
+                                </div>
                                 <div class="single_product_text">
                                     <h4>{{product.name}}</h4>     
                                     <h3>{{product.price}}</h3>
-                                    <a href="#" class="add_cart">+ add to cart<i class="ti-heart"></i></a>
+                                    <a href="#"  class='btn_2 ' style="padding:5px 8px;margin: right 3px; display:inline;gap:2px;">+ add to cart</a><i class="ti-heart" style="margin-left: 10px;color:red"></i>
                                 </div>
                             </div>
                         </div>
@@ -238,7 +244,7 @@
     </section>
     <!--================End Category Product Area =================-->
 
-    <!-- product_list part start-->
+    {% comment %} <!-- product_list part start-->
     <section class="product_list best_seller">
         <div class="container">
             <div class="row justify-content-center">
@@ -291,6 +297,6 @@
             </div>
         </div>
     </section>
-    <!-- product_list part end-->
+    <!-- product_list part end--> {% endcomment %}
 
 {% endblock content %}

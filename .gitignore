@@ -5,6 +5,7 @@ __pycache__/
 *.log
 *.pot
 *.pyc
+migrations 
 __pycache__/
 media
 db.sqlite3
