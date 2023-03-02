@@ -14,25 +14,25 @@
                 <div class="banner_slider owl-carousel">
                     
 
-                    <!--start dynamic slider-->
+<!--start dynamic slider-->
 
                     {% for slid in slider %}
                     <div class="single_banner_slider">
                         
                         <div class="row">
                             <div class="banner_img d-none d-lg-block">
-                                <img style="img-size: 700px; height=352px;" src="{{slid.image.url}}" alt="" />
+                                <img src="{{slid.image.url}}" alt=""  style="height: 430px;object-position: center;">
                             </div>
                             <div class="col-lg-5 col-md-8">
                                 <div class="banner_text">                
                                     <div class="banner_text_iner">
-                                        <h1>{{slid.name}}</h1>
+                                        <h1>{{slid.title}}</h1>
                                         <p>
-                                            {{slid.description}}
+                                            {{slid.short_description}}
                                         </p>
-                                        <a href="#" class="btn_2"
-                                            >buy now</a
-                                        >
+                                        {% comment %} <a href="#" class="btn_2"
+                                            >explore now</a
+                                        > {% endcomment %}
                                     </div>
                                 </div>
                             </div>
@@ -41,7 +41,7 @@
                     </div>
                     {% endfor %}
                     
-                     <!--End dynamic slider-->
+<!--End dynamic slider-->
                      
                 </div>
                 
@@ -62,6 +62,7 @@
             </div>
         </div>
         <div class="row align-items-center justify-content-between">
+<!--start dynamic Featured product show--> 
             {% for feature in features %}
             <div class="col-lg-7 col-sm-6">
                 <div class="single_feature_post_text">
@@ -74,6 +75,9 @@
                 </div>
             </div>
             {% endfor %}
+
+<!--End dynamic Featured product show--> 
+
             <div class="col-lg-5 col-sm-6">
                 <div class="single_feature_post_text">
                     <p>Premium Quality</p>
@@ -125,29 +129,27 @@
                     <div class="single_product_list_slider">
                         <div
                         class="row align-items-center justify-content-between"
-                        style="display:flex;">
+                        >
+<!-- Start to awesome dynamic-->
                         {% for product in  products1 %}
-                            <div class="col-lg-3 col-sm-6" >
-                                <div class="single_product_item" >
-                                    <img 
+                            <div class="col-lg-3 col-sm-6">
+                                <div class="single_product_item">
+                                    <a href="{% url 'single_product' product.id %}">
+                                    <img
                                         src="{{product.image.url}}"
                                         alt=""
                                     />
+                                </a>
                                     <div class="single_product_text">
-                                        <h4>Quartz Belt Watch</h4>
-                                        <h3>$150.00</h3>
-                                        <a href="#" class="add_cart"
-                                            >+ add to cart<i
-                                                class="ti-heart"
-                                            ></i
-                                        ></a>
+                                        <h4>{{product.name}}</h4>
+                                        <h3>${{product.price}}</h3>
+                                        <a href="#"  class='btn_2 ' style="padding:5px 8px;margin: right 3px; display:inline;gap:2px;">+ add to cart</a><i class="ti-heart" style="margin-left: 10px;color:red"></i>
                                     </div>
                                 </div>
                             </div>
-                            
-                            {% endfor %}
+                        {% endfor %}
+<!-- End to awesome dynamic-->
                         </div>
-                        
                     </div>
                     <div class="single_product_list_slider">
                         <div
@@ -155,10 +157,12 @@
                         >
                             <div class="col-lg-3 col-sm-6">
                                 <div class="single_product_item">
+                                    <a href="">
                                     <img
                                         src="{% static 'img/product/product_1.png' %}"
                                         alt=""
                                     />
+                                </a>
                                     <div class="single_product_text">
                                         <h4>Quartz Belt Watch</h4>
                                         <h3>$150.00</h3>
@@ -224,7 +228,7 @@
 </section>
 <!-- weekly sale part end-->
 
-<!-- Best seller product_list part start-->
+<!-- Best seller product_list part start-->{% comment %} 
 <section class="product_list best_seller section_padding">
     <div class="container">
         <div class="row justify-content-center">
@@ -276,6 +280,6 @@
             </div>
         </div>
     </div>
-</section>
+</section> {% endcomment %}
 <!-- Best seller product_list part end-->
 {% endblock content %}

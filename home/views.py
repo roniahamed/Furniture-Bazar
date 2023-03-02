@@ -1,18 +1,18 @@
 from itertools import product
 from django.shortcuts import render
-from products.models import Products
-from products.views import category
+from products.models import *
+from .models import *
 # Create your views here.
 
 def home_page(request):
     
-    slider = Products.objects.filter(category_id=1)
-    # feature =Products.objects.filter(category='sofas')
+    slider = Slide.objects.all()[:5]
+    feature =Products.objects.filter(category_id=2)
     products1 =Products.objects.all().order_by('-date_added')[:8]
     
     context = {
         'slider':slider,
-        # 'features':feature,
+        'features':feature,
         'products1':products1,
        
     }
