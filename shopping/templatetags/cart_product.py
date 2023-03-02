@@ -15,7 +15,8 @@ def cart_view(user):
 def cart_total(user):
     order = Order.objects.filter(user=user, is_ordered=False)
     if order.exists():
-        return order[0].order_products.count()
+        float(order[0].get_totals())
+        return order[0].get_totals()
     else:
         return 0
 

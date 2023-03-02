@@ -2,6 +2,7 @@ from django.db import models
 from products.models import Products
 from django.contrib.auth.models import User
 from django.contrib.auth.decorators import login_required
+from django.conf import settings
 
 
 # Create your models here.
@@ -22,6 +23,14 @@ class Cart(models.Model):
         float_total = format(total, '0.2f')
         return float_total
     
+    
+    def get_discount(self):
+        price = float(self.get_total())
+        main_discount = self.product.discount / 100
+        discount =  price * main_discount
+        float_discount = format(discount, '0.2f')
+        return float_discount
+    
 class Order(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE, default=False, null=True)
     order_products = models.ManyToManyField(Cart)
@@ -30,7 +39,7 @@ class Order(models.Model):
     paymnet_id = models.CharField(max_length=300,blank=True,null = True)
     order_id = models.CharField(max_length=300,blank=True,null = True)
 
-    def get_total(self):
+    def get_totals(self):
         total = 0
         for order_product in self.order_products.all():
             total += float(order_product.get_total)
