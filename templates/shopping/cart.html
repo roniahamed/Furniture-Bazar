@@ -43,10 +43,11 @@
     
                         <h4 class="product-price">$ {{cart.get_total}}</h4>
     
-                        <h4 class="product-offer">{{cart.product.discount}}%</h4>
-    
-                        <p class="product-quantity">Qnt: <input value="{{cart.quantity}}" name="">
-    
+                        <h4 class="product-offer" style="margin-bottom: 10px;">{{cart.product.discount}}%</h4>
+                        <a class="mr-2" href="{% url 'shopping:decrease-item' pk=cart.product.pk %}"><span class="badge badge-light"><i class="fas fa-minus"></i></span></a>
+                        
+                        <span class="product_quantity">{{cart.quantity}}</span>
+                            <a class="mr-2" href="{% url 'shopping:increase-item' pk=cart.product.pk %}"><span class="badge badge-light"><i class="fas fa-plus"></i></span></a>
                         <p class="product-remove">
     
                             <i class="fa fa-trash" aria-hidden="true"></i>
