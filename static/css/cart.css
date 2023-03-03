@@ -117,6 +117,9 @@
 	border-radius: 5px;
 
 }
+.remove:hover{
+	color: white;
+}
 
 .product-remove:hover{
 

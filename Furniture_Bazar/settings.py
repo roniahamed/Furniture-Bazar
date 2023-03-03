@@ -90,7 +90,7 @@ WSGI_APPLICATION = 'Furniture_Bazar.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'furniture_bazar',
+        'NAME': 'furniture',
         'USER': 'root',
         'PASSWORD':'',
         'HOST': 'localhost',
