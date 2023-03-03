@@ -13,6 +13,7 @@
 }
 
 
+
 .container{
 
 	max-width: 1200px;
@@ -94,7 +95,7 @@
 
 .product-name, .product-price, .product-offer{
 
-	margin-bottom: 20px;
+	margin-bottom: 15px;
 
 }
 
