@@ -58,7 +58,7 @@ def increase_cart(request, pk):
         order = order_qs[0]
         if order.order_products.filter(product=product).exists():
             order_product = Cart.objects.filter(product=product, user=request.user, is_parchased=False)[0]
-            if order_product.quantity >= 1:
+            if order_product.quantity >= 0:
                 order_product.quantity += 1
                 order_product.save()
                 messages.info(request, f"{product.name} quantity has been updated")
@@ -79,7 +79,7 @@ def  decrease_cart(request, pk):
         order = order_qs[0]
         if order.order_products.filter(product=product).exists():
             order_product = Cart.objects.filter(product=product, user=request.user, is_parchased=False)[0]
-            if order_product.quantity >= 1:
+            if order_product.quantity  != 1 :
                 order_product.quantity -= 1
                 order_product.save()
                 messages.info(request, f"{product.name} quantity has been updated")
