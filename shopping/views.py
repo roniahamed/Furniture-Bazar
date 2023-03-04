@@ -1,10 +1,15 @@
 from django.shortcuts import render,get_object_or_404,redirect
+from django.http import HttpResponseRedirect
 from products.models import Products
-from shopping.models import Cart,Order
+from shopping.models import Cart,Order,BillingAddress
+from shopping.forms import BillingAddressForm
 from django.contrib.auth.models import User
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth import authenticate
+from django.views.generic import TemplateView
+
+
 
 # Create your views here.
 
@@ -102,9 +107,46 @@ def  decrease_cart(request, pk):
     
 
 # Shopping checkout section
-def check_out(request):
-    return render(request,'./shopping/checkout.html')
+class CheckoutTemplateView(TemplateView):
+    def get(self,request,*args, **kwargs):
+        saved_address = BillingAddress.objects.get_or_create(user=request.user or None)
+        saved_address = saved_address[0]
+        form = BillingAddressForm(instance=saved_address)
+        if request.user.is_authenticated:
+            carts = Cart.objects.filter(user=request.user)
+            sub_total = 0
+            quantity = 0
+            discount = 0
+            total = 0
+            delivery = 0
 
+            for cart in carts:
+
+                sub_total += float(cart.get_total())
+                discount += float(cart.get_discount())
+                quantity += int(cart.quantity)
+
+            if sub_total:
+                delivery = 15
+
+            total = sub_total-discount+delivery
+                
+                # print (carts.get_total())
+            context = {
+                'carts':carts,
+                'sub_total': sub_total,
+                'quantity': quantity,
+                'discount': discount,
+                'delivery' :delivery,
+                'total' : total,
+                'billing_address' : form
+                }
+        else:
+            return redirect("/signup/login")
+        return render(request,'./shopping/checkout.html',context)
+    
+    def post(self,request,*args, **kwargs):
+        pass
 # Shopping confirmation section
 
 def cart(request):
@@ -145,3 +187,5 @@ def cart(request):
 # Shopping confirmation section
 def confirmation(request):
     return render(request,'./shopping/confirmation.html')
+
+

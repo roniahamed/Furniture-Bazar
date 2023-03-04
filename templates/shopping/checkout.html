@@ -1,4 +1,5 @@
 {% extends 'common_code/index.html' %}
+{% comment %} {% load cart_product %} {% endcomment %}
 {% load static %}
 {% block title %}Furniture Bazar {% endblock title %}
 {% block content %}
@@ -19,36 +20,38 @@
           <div class="col-lg-8">
             <h3>Billing Details</h3>
             <form class="row contact_form" action="#" method="post" novalidate="novalidate">
+            {% csrf_token %}
               <div class="col-md-6 form-group p_star">
-                <input type="text" class="form-control" id="first" name="name" />
+                {{billing_address.first_name}}
                 <span class="placeholder" data-placeholder="First name"></span>
               </div>
               <div class="col-md-6 form-group p_star">
-                <input type="text" class="form-control" id="last" name="name" />
+                {{billing_address.last_name}}
                 <span class="placeholder" data-placeholder="Last name"></span>
               </div>
               <div class="col-md-6 form-group p_star">
-                <input type="text" class="form-control" id="number" name="number" />
+                {{billing_address.phone_number}}
                 <span class="placeholder" data-placeholder="Phone number"></span>
               </div>
               <div class="col-md-6 form-group p_star">
-                <input type="text" class="form-control" id="email" name="compemailany" />
+                {{billing_address.email_address}}
                 <span class="placeholder" data-placeholder="Email Address"></span>
               </div>
               <div class="col-md-12 form-group p_star">
-                <input type="text" class="form-control" id="add1" name="add" />
-                <span class="placeholder" data-placeholder="Address "></span>
+                {{billing_address.address}}
+                <span class="placeholder" data-placeholder="Address 1"></span>
               </div>
               <div class="col-md-12 form-group p_star">
-                <input type="text" class="form-control" id="city" name="city" />
-                <span class="placeholder" data-placeholder="Town/City"></span>
+                {{billing_address.address2}}
+                <span class="placeholder" data-placeholder="Address 2"></span>
               </div>
               <div class="col-md-12 form-group p_star">
-                <select class="country_select">
-                  <option value="1">District</option>
-                  <option value="2">District</option>
-                  <option value="4">District</option>
-                </select>
+                {{billing_address.city}}
+                <span class="placeholder" data-placeholder="City"></span>
+              </div>
+              <div class="col-md-12 form-group p_star">
+                {{billing_address.city}}
+                <span class="placeholder" data-placeholder="ZIP"></span>
               </div>
             </form>
           </div>
@@ -61,37 +64,40 @@
                   <th id="mid">Quantity</th>
                   <th id="right">Total</th>
                 </tr>
+                {% if request.user.is_authenticated %}
+                {% for cart in carts %}
                 <tr id="order_tr">
-                  <td id="left">Sofa</td>
-                  <td>x 02</td>
-                  <td id="right">$720.00</td>
+                  
+                  <td id="left">{{cart.product.name}}</td>
+                  <td>x {{cart.quantity}}</td>
+                  <td id="right">{{cart.get_total}}</td>
+                  
                 </tr>
-                <tr id="order_tr">
-                  <td id="left">Dressing Table</td>
-                  <td>x 02</td>
-                  <td id="right">$720.00</td>
-                </tr>
-                <tr id="order_tr">
-                  <td id="left">Wardrobe</td>
-                  <td>x 02</td>
-                  <td id="right">$720.00</td>
-                </tr>
+                {% endfor %}
+                  {% endif %}
+                
+                
                 
               </table>
               <ul class="list list_2">
                 <li>
                   <a href="#">Subtotal
-                    <span>$2160.00</span>
+                    <span>{{ sub_total}}</span>
                   </a>
                 </li>
                 <li>
                   <a href="#">Shipping
-                    <span>Flat rate: $50.00</span>
+                    <span>Flat rate: ${{delivery}}</span>
+                  </a>
+                </li>
+                <li>
+                  <a href="#">Discount
+                    <span>${{ discount}}</span>
                   </a>
                 </li>
                 <li>
                   <a href="#">Total
-                    <span>$2210.00</span>
+                    <span>${{ total}}</span>
                   </a>
                 </li>
               </ul>

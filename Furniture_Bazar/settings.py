@@ -49,7 +49,6 @@ INSTALLED_APPS = [
     'store',
     'contact',
     'searching',
-    
     'about'
 ]
 
