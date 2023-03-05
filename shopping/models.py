@@ -59,7 +59,7 @@ class BillingAddress(models.Model):
     zipcode = models.CharField(max_length=10, blank=True, null=True)
 
     def __str__(self):
-        return f"{self.user.profile.username} billing address"
+        return f"{self.user.username} billing address"
 
     def is_fully_filled(self):
         field_names = [f.name for f in self._meta.get_fields()]
