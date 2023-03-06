@@ -1,5 +1,6 @@
 from django import forms
-from shopping.models import BillingAddress
+from shopping.models import BillingAddress,Order
+
 
 
 
@@ -20,4 +21,5 @@ class BillingAddressForm(forms.ModelForm):
             
         }
 
-   
+        
+        

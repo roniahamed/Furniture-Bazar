@@ -17,43 +17,44 @@
       </div>
       <div class="billing_details">
         <div class="row">
+          
+          <form class="row contact_form" action="#" method="post">
+            {% csrf_token %}
           <div class="col-lg-8">
             <h3>Billing Details</h3>
-            <form class="row contact_form" action="#" method="post" novalidate="novalidate">
-            {% csrf_token %}
-              <div class="col-md-6 form-group p_star">
-                {{billing_address.first_name}}
+              <div class="col-md-6 col-lg-6 form-group p_star">
+                <input type="text" class="form-control"  name="first" required/>
                 <span class="placeholder" data-placeholder="First name"></span>
               </div>
-              <div class="col-md-6 form-group p_star">
-                {{billing_address.last_name}}
+              <div class="col-md-6 col-lg-6 form-group p_star">
+                <input type="text" class="form-control"  name="last" required/>
                 <span class="placeholder" data-placeholder="Last name"></span>
               </div>
               <div class="col-md-6 form-group p_star">
-                {{billing_address.phone_number}}
+                <input type="text" class="form-control"  name="number" required/>
                 <span class="placeholder" data-placeholder="Phone number"></span>
               </div>
               <div class="col-md-6 form-group p_star">
-                {{billing_address.email_address}}
+                <input type="text" class="form-control"  name="email" required/>
                 <span class="placeholder" data-placeholder="Email Address"></span>
               </div>
               <div class="col-md-12 form-group p_star">
-                {{billing_address.address}}
+                <input type="text" class="form-control"  name="add1" required/>
                 <span class="placeholder" data-placeholder="Address 1"></span>
               </div>
               <div class="col-md-12 form-group p_star">
-                {{billing_address.address2}}
+                <input type="text" class="form-control"  name="add2" required/>
                 <span class="placeholder" data-placeholder="Address 2"></span>
               </div>
               <div class="col-md-12 form-group p_star">
-                {{billing_address.city}}
+                <input type="text" class="form-control"  name="city" required/>
                 <span class="placeholder" data-placeholder="City"></span>
               </div>
               <div class="col-md-12 form-group p_star">
-                {{billing_address.city}}
+                <input type="text" class="form-control"  name="zip" required/>
                 <span class="placeholder" data-placeholder="ZIP"></span>
               </div>
-            </form>
+            
           </div>
           <div class="col-lg-4">
             <div class="order_box">
@@ -101,32 +102,30 @@
                   </a>
                 </li>
               </ul>
+              <br><br>
               <div class="payment_item">
-                <div class="radion_btn">
-                  <input type="radio" id="f-option5" name="selector" />
-                  <label for="f-option5">Bkash</label>
-                  <div class="check"></div>
-                </div>
+                 
+                    <select class="country_select" name="payment" required>
+                      <option value="Card">Card</option>
+                      <option value="Cash On Delivery">Cash On Delivery</option>
+                      <option value="Bkash">Bkash</option>
+                    </select>
+                
               </div>
-              <div class="payment_item active">
-                <div class="radion_btn">
-                  <input type="radio" id="f-option6" name="selector" />
-                  <label for="f-option6">Paypal </label>
-                  <img src="{% static 'img/product/single-product/card.jpg' %}" alt="" />
-                  <div class="check"></div>
-                </div>
-                <p>
-                  Please do payment to the store marchent Bkash account.
-                </p>
-              </div>
+              
+              <br>
+              <br>
+              <br>
               <div class="creat_account">
-                <input type="checkbox" id="f-option4" name="selector" />
+                <input type="checkbox" id="f-option4" name="selector" required/>
                 <label for="f-option4">I’ve read and accept the </label>
                 <a href="#">terms & conditions*</a>
               </div>
-              <a class="btn_3" href="#">Proceed to Paypal</a>
+              <button class="btn_3" href="{% url 'shopping:checkout'  %}">Proceed to Payment</button>
+              
             </div>
           </div>
+        </form>
         </div>
       </div>
     </div>

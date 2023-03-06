@@ -32,12 +32,18 @@ class Cart(models.Model):
         return float_discount
     
 class Order(models.Model):
+    PAYMENT_METHOD = (
+        ('Cash on Delivery' , 'Cash on Delivery'),
+        ('Paypal' , 'Paypal'),
+        ('SSLcommerz' , 'SSLcommerz'),
+    )
     user = models.ForeignKey(User, on_delete=models.CASCADE, default=False, null=True)
     order_products = models.ManyToManyField(Cart)
     is_ordered= models.BooleanField(default=False)
     date_added = models.DateTimeField(auto_now_add=True,blank=True,null=True)
-    paymnet_id = models.CharField(max_length=300,blank=True,null = True)
+    payment_id = models.CharField(max_length=300,blank=True,null = True)
     order_id = models.CharField(max_length=300,blank=True,null = True)
+    payment_method = models.CharField(max_length=30,choices=PAYMENT_METHOD,default='Paypal')
 
     def get_totals(self):
         total = 0
