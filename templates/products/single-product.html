@@ -65,7 +65,11 @@
                 <input class="input-number" type="text" value="1" min="0" max="10" name='value'>
                 <span class="number-increment"> <i class="ti-plus"></i></span>
               </div>
-              <a href="#" class="btn_3">add to cart</a>
+              {% if user.is_authenticated %}
+              <a href="{% url 'shopping:add_to_cart' pk=single_product.pk %}" class="btn_3">add to cart</a>
+              {% else %}
+              <a href="{% url 'logpage' %}" class="btn_3">add to cart</a>
+              {% endif %}
               <a href="#" class="like_us"> <i class="ti-heart"></i> </a>
             </div>
           </div>

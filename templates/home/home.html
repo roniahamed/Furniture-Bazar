@@ -64,51 +64,55 @@
         </div>
         <div class="row align-items-center justify-content-between">
 <!--start dynamic Featured product show--> 
-            {% for feature in features %}
+            {% for feature in features1 %}
             <div class="col-lg-7 col-sm-6">
                 <div class="single_feature_post_text"style="border-radius:8px;">
                     <p>Premium Quality</p>
                     <h3>Latest foam Sofa</h3>
-                    <a href="#" class="feature_btn"
-                        >EXPLORE NOW <i class="fas fa-play"></i
-                    ></a>
-                    <img src="{{feature.image.url}}" alt="" />
+                    <a href="{% url 'single_product' feature.id %}" class="feature_btn">EXPLORE NOW <i class="fas fa-play"></i></a>
+                    <a href="{% url 'single_product' feature.id %}">
+                    <img src="{{feature.image.url}}" alt="" style=" border-radius:10px;"/>
+                    </a>
                 </div>
             </div>
             {% endfor %}
 
-<!--End dynamic Featured product show--> 
 
+            {% for feature in features2 %}
             <div class="col-lg-5 col-sm-6">
                 <div class="single_feature_post_text" style="border-radius:8px;">
                     <p>Premium Quality</p>
-                    <h3>Latest foam Sofa</h3>
-                    <a href="#" class="feature_btn"
-                        >EXPLORE NOW <i class="fas fa-play"></i
-                    ></a>
-                    <img src="{% static 'img/feature/feature_2.png' %}" alt="" />
+                    <h3>Latest foam Rack</h3>
+                   <a href="{% url 'single_product' feature.id %}" class="feature_btn">EXPLORE NOW <i class="fas fa-play"></i></a>
+                    <a href="{% url 'single_product' feature.id %}">
+                    <img src="{{feature.image.url}}" alt=""style=" border-radius:10px;" />
                 </div>
             </div>
+            {% endfor %}
+            {% for feature in features3 %}
             <div class="col-lg-5 col-sm-6">
                 <div class="single_feature_post_text" style="border-radius:8px;">
                     <p>Premium Quality</p>
-                    <h3>Latest foam Sofa</h3>
-                    <a href="#" class="feature_btn"
-                        >EXPLORE NOW <i class="fas fa-play"></i
-                    ></a>
-                    <img src="{% static 'img/feature/feature_3.png' %}" alt="" />
+                    <h3>Latest foam Wardrobe</h3>
+                    <a href="{% url 'single_product' feature.id %}" class="feature_btn">EXPLORE NOW <i class="fas fa-play"></i></a>
+                    <a href="{% url 'single_product' feature.id %}">
+                    <img src="{{feature.image.url}}" alt="" style=" border-radius:10px;" />
                 </div>
             </div>
+            {% endfor %}
+            {% for feature in features4 %}
             <div class="col-lg-7 col-sm-6">
-                <div class="single_feature_post_text" style="border-radius:8px;">
+                <div class="single_feature_post_text"style="border-radius:8px;">
                     <p>Premium Quality</p>
-                    <h3>Latest foam Sofa</h3>
-                    <a href="#" class="feature_btn"
-                        >EXPLORE NOW <i class="fas fa-play"></i
-                    ></a>
-                    <img src="{% static 'img/feature/feature_4.png' %}" alt="" />
+                    <h3>Latest foam Bed</h3>
+                    <a href="{% url 'single_product' feature.id %}" class="feature_btn">EXPLORE NOW <i class="fas fa-play"></i></a>
+                    <a href="{% url 'single_product' feature.id %}">
+                    <img src="{{feature.image.url}}" alt="" style=" border-radius:10px;"/>
+                    </a>
                 </div>
             </div>
+            {% endfor %}
+<!--End dynamic Featured product show--> 
         </div>
     </div>
 </section>
@@ -147,7 +151,10 @@
                                     <div class="single_product_text">
                                         <h4>{{product.name}}</h4>
                                         <h3>${{product.price}}</h3>
-                                        <a href="#"  class='btn_2 ' style="padding:5px 8px;margin: right 3px; display:inline;gap:2px;">+ add to cart</a><i class="ti-heart" style="margin-left: 10px;color:red"></i>
+                                        {% if user.is_authenticated %}
+                                        <a href="{% url 'shopping:add_to_cart' pk=product.pk %}"  class='btn_2' style="padding:5px 8px;margin: right 3px; display:inline;gap:2px;">+ add to cart{% else %}
+                                            <a href="{% url 'logpage' %}"   class='btn_2' style="padding:5px 8px;margin: right 3px; display:inline;gap:2px;">+ add to cart
+                                            {% endif %} <i class="ti-heart" style="margin-left: 10px; margin-top:17px"></i> </a>
                                     </div>
                                 </div>
                             </div>
@@ -159,25 +166,32 @@
                         <div
                             class="row align-items-center justify-content-between"
                         >
-                            <div class="col-lg-3 col-sm-6">
-                                <div class="single_product_item">
-                                    <a href="">
-                                    <img
-                                        src="{% static 'img/product/product_1.png' %}"
-                                        alt=""
-                                    />
-                                </a>
-                                    <div class="single_product_text">
-                                        <h4>Quartz Belt Watch</h4>
-                                        <h3>$150.00</h3>
-                                        <a href="#" class="add_cart"
-                                            >+ add to cart<i
-                                                class="ti-heart"
-                                            ></i
-                                        ></a>
+                        {% for product in  products2 %}
+                        <div class="col-lg-3 col-sm-6">
+                            <div class="single_product_item" >
+                                <a href="{% url 'single_product' product.id %}">
+                                    <div style="width: 270px;px; height: 287px;">
+                                <img
+                                    src="{{product.image.url}}"
+                                    alt="" style="width:100%; height: 100%;object-fit: cover;
+                                    object-position: center; border-radius:10px;"
+                                />
                                     </div>
+                                </a>
+                                <div class="single_product_text">
+                                    <h4>{{product.name}}</h4>
+                                    <h3>${{product.price}}</h3>
+                                    {% if user.is_authenticated %}
+                                        <a href="{% url 'shopping:add_to_cart' pk=product.pk %}"  class='btn_2' style="padding:5px 8px;margin: right 3px; display:inline;gap:2px;">+ add to cart
+                                            {% else %}
+                                            <a href="{% url 'logpage' %}"   class='btn_2' style="padding:5px 8px;margin: right 3px; display:inline;gap:2px;">+ add to cart
+                                            {% endif %} <i class="ti-heart" style="margin-left: 10px; margin-top:17px"></i> </a>
                                 </div>
                             </div>
+                        </div>
+                    {% endfor %}
+<!-- End to awesome dynamic-->
+                    </div>
                             
                         </div>
                     </div>
@@ -191,34 +205,19 @@
 <!-- weekly sale start-->
 <section class="our_offer section_padding">
     <div class="container">
+        {% for product in offer_product %}
         <div class="row align-items-center justify-content-between">
             <div class="col-lg-6 col-md-6">
                 <div class="offer_img">
-                    <img src="{% static 'img/offer_img.png' %}" alt="" />
+                    <img style="width:500px;border-radius:10px;" src="{{product.image.url}}" alt="" />
                 </div>
             </div>
             <div class="col-lg-6 col-md-6">
                 <div class="offer_text">
-                    <h2>Weekly Sale on 60% Off All Products</h2>
-                    <!-- <div class="date_countdown">
-                            <div id="timer">
-                                <div id="days" class="date"></div>
-                                <div id="hours" class="date"></div>
-                                <div id="minutes" class="date"></div>
-                                <div id="seconds" class="date"></div>
-                            </div>
-                        </div> -->
-                    <div class="input-group">
-                        <input
-                            type="text"
-                            class="form-control"
-                            placeholder="enter email address"
-                            aria-label="Recipient's username"
-                            aria-describedby="basic-addon2"
-                        />
+                    <h2>Weekly Sale on {{product.discount}}% Off This  Products</h2>
                         <div class="input-group-append">
                             <a
-                                href="#"
+                                href="{% url 'single_product' product.id %}"
                                 class="input-group-text btn_2"
                                 id="basic-addon2"
                                 >book now</a
@@ -228,6 +227,7 @@
                 </div>
             </div>
         </div>
+    {% endfor %}
     </div>
 </section>
 <!-- weekly sale part end-->

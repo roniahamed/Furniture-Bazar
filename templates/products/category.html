@@ -10,7 +10,7 @@
                     <div class="breadcrumb_iner">
                         <div class="breadcrumb_iner_item">
                             <h2>Shop Category</h2>
-                            <p>Home <span>-</span> Shop Category</p>
+                            <p>Home <span>-</span> Shop Category {{title}}</p>
                         </div>
                     </div>
                 </div>
@@ -31,126 +31,44 @@
                             </div>
                             <div class="widgets_inner">
                                 <ul class="list">
+                                    {% for category in categories %}
                                     <li>
-                                        <a href="#">Sofa</a>
-                                        <span>(250)</span>
+                                        <a style=" text-transform: capitalize;" href="{% url 'category_filtering' category.pk %}" >{{category.name}}</a>
                                     </li>
-                                    <li>
-                                        <a href="#">Bed</a>
-                                        <span>(250)</span>
-                                    </li>
-                                    <li>
-                                        <a href="#">Table</a>
-                                        <span>(250)</span>
-                                    </li>
-                                    <li>
-                                        <a href="#">Rak</a>
-                                        <span>(250)</span>
-                                    </li>
-                                    <li>
-                                        <a href="#">Pillow</a>
-                                        <span>(250)</span>
-                                    </li>
-                                    <li>
-                                        <a href="#">Drawer</a>
-                                        <span>(250)</span>
-                                    </li>
-                                    <li>
-                                        <a href="#">Wardrobe</a>
-                                        <span>(250)</span>
-                                    </li>
+                                    {% endfor %}
+                                    
                                 </ul>
                             </div>
                         </aside>
 
-                        <aside class="left_widgets p_filter_widgets">
-                            <div class="l_w_title">
-                                <h3>Product filters</h3>
-                            </div>
-                            <div class="widgets_inner">
-                                <ul class="list">
-                                    <li>
-                                        <a href="#">IKEA</a>
-                                    </li>
-                                    <li>
-                                        <a href="#">Steelcase</a>
-                                    </li>
-                                    <li class="active">
-                                        <a href="#">Hatil Furniture</a>
-                                    </li>
-                                    <li>
-                                        <a href="#">Otobi</a>
-                                    </li>
-                                    <li>
-                                        <a href="#">Regal Furniture</a>
-                                    </li>
-                                </ul>
-                                <ul class="list">
-                                    <li>
-                                        <a href="#">Navana Furniture</a>
-                                    </li>
-                                    <li>
-                                        <a href="#">ISHO</a>
-                                    </li>
-                                    <li class="active">
-                                        <a href="#">Partex Furniture</a>
-                                    </li>
-                                    <li>
-                                        <a href="#">Akhtar Furnishers Ltd.</a>
-                                    </li>
-                                    <li>
-                                        <a href="#">Brothers Furniture</a>
-                                    </li>
-                                </ul>
-                            </div>
-                        </aside>
+<!--Price Slider Optional -->
 
-                        <aside class="left_widgets p_filter_widgets">
-                            <div class="l_w_title">
-                                <h3>Color Filter</h3>
-                            </div>
-                            <div class="widgets_inner">
-                                <ul class="list">
-                                    <li>
-                                        <a href="#">Black</a>
-                                    </li>
-                                    <li>
-                                        <a href="#">Black Leather</a>
-                                    </li>
-                                    <li class="active">
-                                        <a href="#">Black with red</a>
-                                    </li>
-                                    <li>
-                                        <a href="#">Gold</a>
-                                    </li>
-                                    <li>
-                                        <a href="#">Spacegrey</a>
-                                    </li>
-                                </ul>
-                            </div>
-                        </aside>
-
-                        <aside class="left_widgets p_filter_widgets price_rangs_aside">
+                       {% comment %}  <aside class="left_widgets p_filter_widgets price_rangs_aside">
                             <div class="l_w_title">
                                 <h3>Price Filter</h3>
                             </div>
                             <div class="widgets_inner">
                                 <div class="range_item">
                                     <!-- <div id="slider-range"></div> -->
+                                    <form action="">
                                     <input type="text" class="js-range-slider" value="" />
                                     <div class="d-flex">
                                         <div class="price_text">
                                             <p>Price :</p>
                                         </div>
                                         <div class="price_value d-flex justify-content-center">
-                                            <input type="text" class="js-input-from" id="amount" readonly />
+                                            <input type="text" class="js-input-from" id="amount" name='min_price' />
                                             <span>to</span>
-                                            <input type="text" class="js-input-to" id="amount" readonly />
-                                        </div>
+                                            <input type="text" class="js-input-to" id="amount"  name='max_price'/>
+                                        </br>
                                     </div>
                                 </div>
+                                
+                                <button style="border:None;padding:5px;margin:0;margin-top:10px;"class="btn_2" type="submit">Enter</button>
+                                </form>
+                                </div>
                             </div>
-                        </aside>
+                        </aside> {% endcomment %}
                     </div>
                 </div>
                 <div class="col-lg-9">
@@ -158,7 +76,7 @@
                         <div class="col-lg-12">
                             <div class="product_top_bar d-flex justify-content-between align-items-center">
                                 <div class="single_product_menu">
-                                    <p><span>10000 </span> Product Found</p>
+                                    <p><span>{{products.count}} </span> Product Found</p>
                                 </div>
                                 <div class="single_product_menu d-flex">
                                     <h5>short by : </h5>
@@ -168,16 +86,7 @@
                                         <option value="2">product</option>
                                     </select>
                                 </div>
-                                <!-- <div class="single_product_menu d-flex">
-                                    <h5>show :</h5>
-                                    <div class="top_pageniation">
-                                        <ul>
-                                            <li>1</li>
-                                            <li>2</li>
-                                            <li>3</li>
-                                        </ul>
-                                    </div>
-                                </div> -->
+                               
                                 <div class="single_product_menu d-flex">
                                     <div class="input-group">
                                         <input type="text" class="form-control" placeholder="search"
@@ -197,16 +106,23 @@
                         <div class="col-lg-4 col-sm-6">
                             <div class="single_product_item">
                                 <div style="width: 270px;px; height: 287px;">
+                                    <a href="{% url 'single_product' product.id %}">
                                     <img
                                         src="{{product.image.url}}"
                                         alt="" style="width:100%; height: 100%;object-fit: cover;
-                                        object-position: center; border-radius:10px;"
+                                        object-position: center; border-radius:5px;"
                                     />
+                                </a>
                                 </div>
                                 <div class="single_product_text">
                                     <h4>{{product.name}}</h4>     
                                     <h3>{{product.price}}</h3>
-                                    <a href="{% url 'shopping:add_to_cart' pk=product.pk %}"   class='btn_2 ' style="padding:5px 8px;margin: right 3px; display:inline;gap:2px;">+ add to cart</a><i class="ti-heart" style="margin-left: 10px;color:red"></i>
+                                    {% if user.is_authenticated %}
+                                    <a href="{% url 'shopping:add_to_cart' pk=product.pk %}"   class='btn_2 ' style="padding:5px 8px;margin: right 3px; display:inline;gap:2px;">+ add to cart</a>
+                                    {% else %}
+                                    <a href="{% url 'logpage' %}"   class='btn_2 ' style="padding:5px 8px;margin: right 3px; display:inline;gap:2px;">+ add to cart</a>
+                                    {% endif %}
+                                    <a href=""style="padding:5px 8px;margin: right 3px; display:inline;gap:2px;"><i class="ti-heart" style="margin-left: 10px;margin-top:17px;"></i></a>
                                 </div>
                             </div>
                         </div>

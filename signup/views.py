@@ -6,26 +6,7 @@ from django.contrib import messages
 
 
 # Create your views here.
-def log_in(request):
-    if request.user.is_authenticated:
-        return redirect('/')
-    elif request.method=="POST":
-        username = request.POST['username']
-        password = request.POST['password']
-        if username !="" and User.objects.filter(username=username).exists():
 
-            user = authenticate(username=username,password=password)
-            if user is not None:
-                auth.login(request,user)
-                # messages.info(request,'Welcome to our Shop\nSuccessfully Login')
-                return redirect("/")
-            else:
-                messages.info(request,'Invalid password')
-                return redirect("/signup/login")
-        else:
-            messages.info(request,'Invalid Username')
-            return redirect("/signup/login")
-    return render(request,'./signup/login.html')
 
 # Sign up page 
 def sign_up(request):
@@ -61,6 +42,29 @@ def sign_up(request):
             messages.info(request,"Your password and confirm password does't match")
             return redirect('signup')
     return render(request,'./signup/signup.html')
+
+# login part
+def log_in(request):
+    if request.user.is_authenticated:
+        return redirect('/')
+    elif request.method=="POST":
+        username = request.POST['username']
+        password = request.POST['password']
+        if username !="" and User.objects.filter(username=username).exists():
+
+            user = authenticate(username=username,password=password)
+            if user is not None:
+                auth.login(request,user)
+                # messages.info(request,'Welcome to our Shop\nSuccessfully Login')
+                return redirect("/")
+            else:
+                messages.info(request,'Invalid password')
+                return redirect("/signup/login")
+        else:
+            messages.info(request,'Invalid Username')
+            return redirect("/signup/login")
+    return render(request,'./signup/login.html')
+
 
 #Log_out 
 def Logout_user(request):
