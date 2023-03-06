@@ -1,0 +1,80 @@
+{% extends 'common_code/index.html' %}
+{% load static %}
+
+
+{% block title %}About Us{% endblock title %}
+
+{% block content %}
+    <section class="section1">
+        <div class="div1">
+            <img src="https://cdn.dribbble.com/users/5508583/screenshots/13916478/media/0d229ae6a041cfb8c8d15685dda6fd8d.gif" alt="About Us Picture" 
+            class="about_img">
+            <div class="div2">
+                <h1 class="about_h1">
+                    About Us
+                </h1>
+                <h5 class="about_h5">
+                    Developer<span style="color: rgb(255, 51, 104)"> & Designer</span>
+                </h5>                
+                <div class="card mb-1">
+                    <div class="card-body text-center">
+                        <div style="display: flex;justify-content: space-around;">
+                            <div>
+                                <div>
+                                    <img src="{% static 'img/aboutus/anupam.jpg' %}" alt="Anupam"
+                                      class="rounded-circle img-fluid" style="width: 50px;">
+                                </div>
+                                <div>
+                                    <h5 class="my-3">Anupam Paul</h5>
+                                </div>
+                                
+                                <div>
+                                    <details>
+                                        Mail: mail@mail.com
+                                    </details>
+                                </div>
+                            </div>
+                            <div>
+                                <div>
+                                    <img src="{% static 'img/aboutus/roni.png' %}" alt="Roni"
+                                    class="rounded-circle img-fluid" style="width: 50px;">
+                                </div>
+                                <div>
+                                    <h5 class="my-3">MD Roni Ahmed</h5>
+                                </div>
+                                <div>
+                                    <details>
+                                        Mail: mail@mail.com
+                                    </details>
+                                </div>
+                            </div>
+                            <div>
+                                <div>
+                                    <img src="{% static 'img/aboutus/sultan.jpg' %}" alt="Sultan"
+                                    class="rounded-circle img-fluid" style="width: 50px;">
+                                </div>
+                                
+                                <div>
+                                    <h5 class="my-3">Rajwan Sultan</h5>
+                                </div>
+                                <div>
+                                    <details>
+                                        Mail: mail@mail.com
+                                    </details>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                  </div>
+
+
+            </div>
+        </div>
+    </section>
+    
+
+
+{% endblock %}
+
+
