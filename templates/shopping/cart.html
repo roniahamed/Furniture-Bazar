@@ -47,7 +47,7 @@
                         <p class="product-remove">
     
                             
-    
+                            
                             <a href="{% url 'shopping:remove-item' pk=cart.product.pk  %}" class="remove"><i class="fa fa-trash" aria-hidden="true"></i> Remove </a>
     
                         </p>
@@ -97,9 +97,12 @@
                     <span>$ {{ total}}</span>
     
                 </p>
-    
+                
+                {% if carts %}
                 <span><a href="{% url 'shopping:checkout' %}" style="border-radius: 10px;">Proceed to Checkout</a></span>
-    
+                {% else %}
+                <span><a href="#" style="border-radius: 10px;">Proceed to Checkout</a></span>
+                {% endif %}
             </div>
     
         </div>

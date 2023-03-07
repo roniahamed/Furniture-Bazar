@@ -10,7 +10,6 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/4.1/ref/settings/
 """
 
-from curses.ascii import EM
 from pathlib import Path
 import os
 
@@ -91,7 +90,7 @@ WSGI_APPLICATION = 'Furniture_Bazar.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'furniture',
+        'NAME': 'furniture_bazar',
         'USER': 'root',
         'PASSWORD':'',
         'HOST': 'localhost',
