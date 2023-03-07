@@ -1,4 +1,5 @@
 {% extends 'common_code/index.html' %}
+{% comment %} {% load cart_product %} {% endcomment %}
 {% load static %}
 {% block title %}Furniture Bazar {% endblock title %}
 {% block content %}
@@ -16,41 +17,44 @@
       </div>
       <div class="billing_details">
         <div class="row">
+          
+          <form class="row contact_form" action="#" method="post">
+            {% csrf_token %}
           <div class="col-lg-8">
             <h3>Billing Details</h3>
-            <form class="row contact_form" action="#" method="post" novalidate="novalidate">
-              <div class="col-md-6 form-group p_star">
-                <input type="text" class="form-control" id="first" name="name" />
+              <div class="col-md-6 col-lg-6 form-group p_star">
+                <input type="text" class="form-control"  name="first" required/>
                 <span class="placeholder" data-placeholder="First name"></span>
               </div>
-              <div class="col-md-6 form-group p_star">
-                <input type="text" class="form-control" id="last" name="name" />
+              <div class="col-md-6 col-lg-6 form-group p_star">
+                <input type="text" class="form-control"  name="last" required/>
                 <span class="placeholder" data-placeholder="Last name"></span>
               </div>
               <div class="col-md-6 form-group p_star">
-                <input type="text" class="form-control" id="number" name="number" />
+                <input type="text" class="form-control"  name="number" required/>
                 <span class="placeholder" data-placeholder="Phone number"></span>
               </div>
               <div class="col-md-6 form-group p_star">
-                <input type="text" class="form-control" id="email" name="compemailany" />
+                <input type="text" class="form-control"  name="email" required/>
                 <span class="placeholder" data-placeholder="Email Address"></span>
               </div>
               <div class="col-md-12 form-group p_star">
-                <input type="text" class="form-control" id="add1" name="add" />
-                <span class="placeholder" data-placeholder="Address "></span>
+                <input type="text" class="form-control"  name="add1" required/>
+                <span class="placeholder" data-placeholder="Address 1"></span>
               </div>
               <div class="col-md-12 form-group p_star">
-                <input type="text" class="form-control" id="city" name="city" />
-                <span class="placeholder" data-placeholder="Town/City"></span>
+                <input type="text" class="form-control"  name="add2" required/>
+                <span class="placeholder" data-placeholder="Address 2"></span>
               </div>
               <div class="col-md-12 form-group p_star">
-                <select class="country_select">
-                  <option value="1">District</option>
-                  <option value="2">District</option>
-                  <option value="4">District</option>
-                </select>
+                <input type="text" class="form-control"  name="city" required/>
+                <span class="placeholder" data-placeholder="City"></span>
               </div>
-            </form>
+              <div class="col-md-12 form-group p_star">
+                <input type="text" class="form-control"  name="zip" required/>
+                <span class="placeholder" data-placeholder="ZIP"></span>
+              </div>
+            
           </div>
           <div class="col-lg-4">
             <div class="order_box">
@@ -61,66 +65,67 @@
                   <th id="mid">Quantity</th>
                   <th id="right">Total</th>
                 </tr>
+                {% if request.user.is_authenticated %}
+                {% for cart in carts %}
                 <tr id="order_tr">
-                  <td id="left">Sofa</td>
-                  <td>x 02</td>
-                  <td id="right">$720.00</td>
+                  
+                  <td id="left">{{cart.product.name}}</td>
+                  <td>x {{cart.quantity}}</td>
+                  <td id="right">{{cart.get_total}}</td>
+                  
                 </tr>
-                <tr id="order_tr">
-                  <td id="left">Dressing Table</td>
-                  <td>x 02</td>
-                  <td id="right">$720.00</td>
-                </tr>
-                <tr id="order_tr">
-                  <td id="left">Wardrobe</td>
-                  <td>x 02</td>
-                  <td id="right">$720.00</td>
-                </tr>
+                {% endfor %}
+                  {% endif %}
+                
+                
                 
               </table>
               <ul class="list list_2">
                 <li>
                   <a href="#">Subtotal
-                    <span>$2160.00</span>
+                    <span>{{ sub_total}}</span>
                   </a>
                 </li>
                 <li>
                   <a href="#">Shipping
-                    <span>Flat rate: $50.00</span>
+                    <span>Flat rate: ${{delivery}}</span>
+                  </a>
+                </li>
+                <li>
+                  <a href="#">Discount
+                    <span>${{ discount}}</span>
                   </a>
                 </li>
                 <li>
                   <a href="#">Total
-                    <span>$2210.00</span>
+                    <span>${{ total}}</span>
                   </a>
                 </li>
               </ul>
+              <br><br>
               <div class="payment_item">
-                <div class="radion_btn">
-                  <input type="radio" id="f-option5" name="selector" />
-                  <label for="f-option5">Bkash</label>
-                  <div class="check"></div>
-                </div>
+                 
+                    <select class="country_select" name="payment" required>
+                      <option value="Card">Card</option>
+                      <option value="Cash On Delivery">Cash On Delivery</option>
+                      <option value="Bkash">Bkash</option>
+                    </select>
+                
               </div>
-              <div class="payment_item active">
-                <div class="radion_btn">
-                  <input type="radio" id="f-option6" name="selector" />
-                  <label for="f-option6">Paypal </label>
-                  <img src="{% static 'img/product/single-product/card.jpg' %}" alt="" />
-                  <div class="check"></div>
-                </div>
-                <p>
-                  Please do payment to the store marchent Bkash account.
-                </p>
-              </div>
+              
+              <br>
+              <br>
+              <br>
               <div class="creat_account">
-                <input type="checkbox" id="f-option4" name="selector" />
+                <input type="checkbox" id="f-option4" name="selector" required/>
                 <label for="f-option4">I’ve read and accept the </label>
                 <a href="#">terms & conditions*</a>
               </div>
-              <a class="btn_3" href="#">Proceed to Paypal</a>
+              <button class="btn_3" href="{% url 'shopping:checkout'  %}">Proceed to Payment</button>
+              
             </div>
           </div>
+        </form>
         </div>
       </div>
     </div>

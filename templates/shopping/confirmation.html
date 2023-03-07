@@ -33,16 +33,13 @@
             <h4>order info</h4>
             <ul>
               <li>
-                <p>order number</p><span>: 60235</span>
+                <p>order number</p><span>: {{order.order_id}}</span>
               </li>
               <li>
-                <p>data</p><span>: Oct 03, 2017</span>
+                <p>total</p><span>: USD {{ total}}</span>
               </li>
               <li>
-                <p>total</p><span>: USD 2210</span>
-              </li>
-              <li>
-                <p>payment method</p><span>: Check payments</span>
+                <p>payment method</p><span>: {{order.payment_method}}</span>
               </li>
             </ul>
           </div>
@@ -52,16 +49,19 @@
             <h4>Billing Address</h4>
             <ul>
               <li>
-                <p>Street</p><span>: 56/8</span>
+                <p>Name</p><span>:  {{address.first_name}}  {{address.last_name}}</span>
               </li>
               <li>
-                <p>city</p><span>: Los Angeles</span>
+                <p>Phone Number</p><span>:  {{address.phone_number}}</span>
               </li>
               <li>
-                <p>country</p><span>: United States</span>
+                <p>Address</p><span>: {{address.address}}</span>
               </li>
               <li>
-                <p>postcode</p><span>: 36952</span>
+                <p>City</p><span>: {{address.city}}</span>
+              </li>
+              <li>
+                <p>postcode</p><span>:  {{address.zipcode}}</span>
               </li>
             </ul>
           </div>
@@ -71,16 +71,19 @@
             <h4>shipping Address</h4>
             <ul>
               <li>
-                <p>Street</p><span>: 56/8</span>
+                <p>Name</p><span>:  {{address.first_name}}  {{address.last_name}}</span>
               </li>
               <li>
-                <p>city</p><span>: Los Angeles</span>
+                <p>Phone Number</p><span>:  {{address.phone_number}}</span>
               </li>
               <li>
-                <p>country</p><span>: United States</span>
+                <p>Address</p><span>: {{address.address2}}</span>
               </li>
               <li>
-                <p>postcode</p><span>: 36952</span>
+                <p>City</p><span>: {{address.city}}</span>
+              </li>
+              <li>
+                <p>postcode</p><span>:  {{address.zipcode}}</span>
               </li>
             </ul>
           </div>
@@ -99,34 +102,35 @@
                 </tr>
               </thead>
               <tbody>
+                {% for cart in carts %}
                 <tr>
-                  <th colspan="2"><span>Pixelstore fresh Blackberry</span></th>
-                  <th>x02</th>
-                  <th> <span>$720.00</span></th>
+                  <th colspan="2"><span>{{cart.product.name}}</span></th>
+                  <th>x {{cart.quantity}}</th>
+                  <th> <span>${{cart.get_total}}</span></th>
                 </tr>
-                <tr>
-                  <th colspan="2"><span>Pixelstore fresh Blackberry</span></th>
-                  <th>x02</th>
-                  <th> <span>$720.00</span></th>
-                </tr>
-                <tr>
-                  <th colspan="2"><span>Pixelstore fresh Blackberry</span></th>
-                  <th>x02</th>
-                  <th> <span>$720.00</span></th>
-                </tr>
+                {% endfor %}
+                
                 <tr>
                   <th colspan="3">Subtotal</th>
-                  <th> <span>$2160.00</span></th>
+                  <th> <span>${{ sub_total}}</span></th>
                 </tr>
                 <tr>
                   <th colspan="3">shipping</th>
-                  <th><span>flat rate: $50.00</span></th>
+                  <th><span>flat rate: ${{delivery}}</span></th>
+                </tr>
+                <tr>
+                  <th colspan="3">Discount</th>
+                  <th><span>${{discount}}</span></th>
+                </tr>
+                <tr>
+                  <th colspan="3">Quantity</th>
+                  <th><span>{{quantity}}</span></th>
                 </tr>
               </tbody>
               <tfoot>
                 <tr>
-                  <th scope="col" colspan="3">Quantity</th>
-                  <th scope="col">Total</th>
+                  <th scope="col" colspan="3">Total</th>
+                  <th scope="col">{{ total}}</th>
                 </tr>
               </tfoot>
             </table>
