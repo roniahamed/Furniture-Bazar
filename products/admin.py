@@ -3,7 +3,7 @@ from products.models import *
 
 # Register your models here.
 class ProductAdmin(admin.ModelAdmin):
-    list_display=('id','name','price','is_approve','category')
+    list_display=('id','name','price','is_approve','category','discount')
     list_display_link = ('id','name')
     list_filter = ('price','category')
     list_editable = ('is_approve',)

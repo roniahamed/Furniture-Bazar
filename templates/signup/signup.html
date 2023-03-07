@@ -25,31 +25,31 @@
                         <div class="login_part_form_iner">
                             <h3>Welcome to the shop <br>
                                 Please Sign up now</h3>
-                            <form class="row contact_form" action="" method="POST" novalidate="validation">
+                            <form class="row contact_form" action="" method="POST" validation>
                                 {% csrf_token %}
                                 
                                 <div class="col-md-12 form-group p_star">
                                     <input type="text" class="form-control" id="name" name="username" value=""
-                                            placeholder="Username" >
+                                    required placeholder="Username" >
                                 </div>
                                 <div class="col-md-6 form-group p_star">
-                                    <input type="text" class="form-control" id="name" name="first_name" value=""
+                                    <input type="text" class="form-control" id="name" name="first_name" value="" required
                                             placeholder="First Name" >
                                 </div>
                                 <div class="col-md-6 form-group p_star">
-                                    <input type="text" class="form-control" id="name" name="last_name" value=""
+                                    <input type="text" class="form-control" id="name" name="last_name" value="" required
                                             placeholder="Last Name" >
                                 </div>
                                 <div class="col-md-12 form-group p_star">
-                                    <input type="email" class="form-control" id="password" name="email" value=""
+                                    <input type="email" class="form-control" id="password" name="email" value="" required
                                         placeholder="Email" >
                                 </div>
                                 <div class="col-md-12 form-group p_star">
-                                    <input type="password" class="form-control" id="password" name="password1" value=""
+                                    <input type="password" class="form-control" id="password" name="password1" value="" required
                                         placeholder="Password" >
                                 </div>
                                 <div class="col-md-12 form-group p_star">
-                                    <input type="password" class="form-control" id="password" name="password2" value=""
+                                    <input type="password" class="form-control" id="password" name="password2" value="" required
                                         placeholder="Confirm Password" >
                                 </div>
                                 <div>

@@ -24,11 +24,7 @@
     <div class="container">
     
         <div class="cart">
-            
-            
-            
-            
-    
+
             <div class="products">
                 {% if request.user.is_authenticated %}
             
@@ -50,9 +46,9 @@
                             <a class="mr-2" href="{% url 'shopping:increase-item' pk=cart.product.pk %}"><span class="badge badge-light"><i class="fas fa-plus"></i></span></a>
                         <p class="product-remove">
     
-                            <i class="fa fa-trash" aria-hidden="true"></i>
+                            
     
-                            <a href="{% url 'shopping:remove-item' pk=cart.product.pk  %}" class="remove"> Remove </a>
+                            <a href="{% url 'shopping:remove-item' pk=cart.product.pk  %}" class="remove"><i class="fa fa-trash" aria-hidden="true"></i> Remove </a>
     
                         </p>
     
@@ -72,10 +68,7 @@
     
                     <span>Subtotal</span>
                  <span>$ {{ sub_total}}</span>
-                    
-                    
-                   
-    
+
                 </p>
     
                 <p>
@@ -115,7 +108,7 @@
 </div>
 
     <!-- product_list part start-->
-    <section class="product_list best_seller section_padding">
+   {% comment %}  <section class="product_list best_seller section_padding">
         <div class="container">
             <div class="row justify-content-center">
                 <div class="col-lg-12">
@@ -167,6 +160,6 @@
             </div>
         </div>
     </section>
-    <!-- product_list part end-->
+    <!-- product_list part end--> {% endcomment %}
 
 {% endblock content %}
