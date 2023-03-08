@@ -211,8 +211,8 @@ def confirmation(request):
         carts = Cart.objects.filter(user=request.user,is_parchased=True)
         order_qs = Order.objects.filter(user=request.user, is_ordered = True)
         b_add = BillingAddress.objects.filter(user=request.user)
-        address = b_add[0]
-        order = order_qs[0]
+        address = b_add[len(b_add)-1]
+        order = order_qs[len(order_qs)-1]
         sub_total = 0
         quantity = 0
         discount = 0

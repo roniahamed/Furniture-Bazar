@@ -75,7 +75,7 @@
                     </div>
 
                     <div class="row align-items-center latest_product_inner">
-                        {% for product in products %}
+                        {% for product in product_final %}
                         <div class="col-lg-4 col-sm-6">
                             <div class="single_product_item">
                                 <div style="width: 270px;px; height: 287px;">
@@ -104,27 +104,32 @@
                         
                         <div class="col-lg-12">
                             <div class="pageination">
+                                
+          
+                                
                                 <nav aria-label="Page navigation example">
                                     <ul class="pagination justify-content-center">
+                                        {% if product_final.has_previous %}
                                         <li class="page-item">
-                                            <a class="page-link" href="#" aria-label="Previous">
+                                            <a class="page-link" href="/products/?page={{product_final.previous_page_number}}" aria-label="Previous">
                                                 <i class="ti-angle-double-left"></i>
-                                            </a>
+                                            </a>                                           
                                         </li>
-                                        <li class="page-item"><a class="page-link" href="#">1</a></li>
-                                        <li class="page-item"><a class="page-link" href="#">2</a></li>
-                                        <li class="page-item"><a class="page-link" href="#">3</a></li>
-                                        <li class="page-item"><a class="page-link" href="#">4</a></li>
-                                        <li class="page-item"><a class="page-link" href="#">5</a></li>
-                                        <li class="page-item"><a class="page-link" href="#">6</a></li>
+                                        {% endif %}
+                                        <li class="page-item"><a class="page-link" href="/products/?page=1">1</a></li>
+                                        <li class="page-item"><a class="page-link" href="/products/?page=2">2</a></li>
+                                        {% if product_final.has_next %}
                                         <li class="page-item">
-                                            <a class="page-link" href="#" aria-label="Next">
+                                            <a class="page-link" href="/products/?page={{product_final.next_page_number}}" aria-label="Next">
                                                 <i class="ti-angle-double-right"></i>
-                                            </a>
+                                            </a>                                           
                                         </li>
+                                        {% endif %}
                                     </ul>
                                 </nav>
+                                
                             </div>
+                            {% comment %} {{ product_final }} {% endcomment %}
                         </div>
                     </div>
                 </div>
