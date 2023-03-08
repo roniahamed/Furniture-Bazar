@@ -135,7 +135,7 @@ def checkout(request):
                     item.is_parchased = True
                     item.save()
                     print('Order Submitted Successfully')  
-        carts = Cart.objects.filter(user=request.user)
+        carts = Cart.objects.filter(user=request.user, is_parchased=False)
         sub_total = 0
         quantity = 0
         discount = 0
