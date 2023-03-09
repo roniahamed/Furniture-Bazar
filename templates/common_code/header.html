@@ -75,7 +75,7 @@
                         <a id="search_1" href="javascript:void(0)"
                             ><i class="ti-search"></i
                         ></a>
-                        <a href="{% url 'wishlist' %}"><i class="ti-heart"></i></a>
+                        <a href=""><i class="ti-heart"></i></a>
                         <div class="cart">
                             <a
                                 
@@ -101,20 +101,18 @@
                                     aria-labelledby="navbarDropdown_2"
                                 >  {% if user.is_authenticated %}
                                     <a class="dropdown-item" >Hi, {{user.first_name}}</a>
-                                    <a href="{% url 'profile' %}" class="dropdown-item" >Profile</a>
                                     {% else %}
                                     <a class="dropdown-item" href="{% url 'logpage' %}">
                                         login</a
                                     >
                                     {% endif %}
-                                    {% comment %} <a class="dropdown-item" href="{% url 'tracking' %}"
+                                    <a class="dropdown-item" href="{% url 'tracking' %}"
                                         >tracking</a
-                                    > {% endcomment %}
-                                    {% if user.is_authenticated %}
+                                    >
                                     <a class="dropdown-item" href="{% url 'shopping:confirmation' %}"
                                         >confirmation</a
                                     >
-                                    
+                                    {% if user.is_authenticated %}
                                     <a class="dropdown-item" href="{% url 'logout' %}"
                                         >Logout</a
                                     >

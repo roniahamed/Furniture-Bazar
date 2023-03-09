@@ -70,15 +70,7 @@
               {% else %}
               <a href="{% url 'logpage' %}" class="btn_3">add to cart</a>
               {% endif %}
-              {% if user.is_authenticated %}
-              {% if white_all%}
-              <a href="{% url 'shopping:whitelist' pk=single_product.pk %}" class="like_us" style="size:40%;">❤️</i> </a>
-              {% else %}
-              <a href="{% url 'shopping:whitelist' pk=single_product.pk %}" class="like_us">🤍 </a>
-              {% endif %}
-              {% else %}
-              <a href="{% url 'logpage' %}" class="like_us">🤍 </a>
-              {% endif %}
+              <a href="#" class="like_us"> <i class="ti-heart"></i> </a>
             </div>
           </div>
         </div>

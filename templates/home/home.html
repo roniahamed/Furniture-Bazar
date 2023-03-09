@@ -154,7 +154,7 @@
                                         {% if user.is_authenticated %}
                                         <a href="{% url 'shopping:add_to_cart' pk=product.pk %}"  class='btn_2' style="padding:5px 8px;margin: right 3px; display:inline;gap:2px;">+ add to cart{% else %}
                                             <a href="{% url 'logpage' %}"   class='btn_2' style="padding:5px 8px;margin: right 3px; display:inline;gap:2px;">+ add to cart
-                                            {% endif %} </a>
+                                            {% endif %} <i class="ti-heart" style="margin-left: 10px; margin-top:17px"></i> </a>
                                     </div>
                                 </div>
                             </div>
@@ -185,7 +185,7 @@
                                         <a href="{% url 'shopping:add_to_cart' pk=product.pk %}"  class='btn_2' style="padding:5px 8px;margin: right 3px; display:inline;gap:2px;">+ add to cart
                                             {% else %}
                                             <a href="{% url 'logpage' %}"   class='btn_2' style="padding:5px 8px;margin: right 3px; display:inline;gap:2px;">+ add to cart
-                                            {% endif %} </a>
+                                            {% endif %} <i class="ti-heart" style="margin-left: 10px; margin-top:17px"></i> </a>
                                 </div>
                             </div>
                         </div>
