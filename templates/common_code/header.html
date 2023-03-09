@@ -75,6 +75,7 @@
                         <a id="search_1" href="javascript:void(0)"
                             ><i class="ti-search"></i
                         ></a>
+                        {% if user.is_authenticated %}
                         <a href="{% url 'wishlist' %}"><i class="ti-heart"></i></a>
                         <div class="cart">
                             <a
@@ -84,6 +85,17 @@
                                 <i class="fas fa-cart-plus"></i>
                             </a>
                         </div>
+                        {% else %}
+                        <a href="{% url 'logpage' %}"><i class="ti-heart"></i></a>
+                        <div class="cart">
+                            <a
+                                
+                                href="{% url 'logpage' %}"
+                            >
+                                <i class="fas fa-cart-plus"></i>
+                            </a>
+                        </div>
+                        {% endif %}
                         <div class="dropdown cart">
                             <a
                                 class="dropdown-toggle"
