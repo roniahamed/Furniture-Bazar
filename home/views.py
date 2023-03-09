@@ -15,6 +15,7 @@ def home_page(request):
     products2 =Products.objects.all().order_by('quantity')[:8]
     offer_product = Products.objects.filter(discount__gte=2).order_by('-discount')[:1]
 
+
     
     context = {
         'slider':slider,

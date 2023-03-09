@@ -78,3 +78,9 @@ class BillingAddress(models.Model):
     class Meta:
         verbose_name_plural = "Billing Addresses"
     
+
+
+class whitelist(models.Model):
+    user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
+    product_id = models.ForeignKey(Products, on_delete=models.CASCADE,blank=True, null=True )
+    products = models.IntegerField(blank=True,null=True)
