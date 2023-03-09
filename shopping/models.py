@@ -34,8 +34,8 @@ class Cart(models.Model):
 class Order(models.Model):
     PAYMENT_METHOD = (
         ('Cash on Delivery' , 'Cash on Delivery'),
-        ('Paypal' , 'Paypal'),
-        ('SSLcommerz' , 'SSLcommerz'),
+        ('Card' , 'Card'),
+        ('Bkash' , 'Bkash'),
     )
     user = models.ForeignKey(User, on_delete=models.CASCADE, default=False, null=True)
     order_products = models.ManyToManyField(Cart)
@@ -43,7 +43,7 @@ class Order(models.Model):
     date_added = models.DateTimeField(auto_now_add=True,blank=True,null=True)
     payment_id = models.CharField(max_length=300,blank=True,null = True)
     order_id = models.CharField(max_length=300,blank=True,null = True)
-    payment_method = models.CharField(max_length=30,choices=PAYMENT_METHOD,default='Paypal')
+    payment_method = models.CharField(max_length=30,choices=PAYMENT_METHOD,default='Cash on Delivery')
 
     def get_totals(self):
         total = 0
@@ -78,3 +78,9 @@ class BillingAddress(models.Model):
     class Meta:
         verbose_name_plural = "Billing Addresses"
     
+
+
+class whitelist(models.Model):
+    user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
+    product_id = models.ForeignKey(Products, on_delete=models.CASCADE,blank=True, null=True )
+    products = models.IntegerField(blank=True,null=True)

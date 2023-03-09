@@ -1,5 +1,5 @@
 from django.shortcuts import render,get_object_or_404,redirect
-from django.http import HttpResponseRedirect
+from django.http import HttpResponse, HttpResponseRedirect
 from products.models import Products
 from shopping.models import Cart,Order,BillingAddress
 from django.contrib.auth.models import User
@@ -7,6 +7,7 @@ from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth import authenticate
 from django.views.generic import TemplateView
+from .models import whitelist as white_list
 
 
 
@@ -106,6 +107,7 @@ def  decrease_cart(request, pk):
     
 
 # Shopping checkout section
+@login_required
 def checkout(request):
  
     if request.user.is_authenticated:
@@ -134,7 +136,42 @@ def checkout(request):
                 for item in cart_items:
                     item.is_parchased = True
                     item.save()
-                    print('Order Submitted Successfully')  
+                    # print('Order Submitted Successfully')  
+                carts = Cart.objects.filter(user=request.user,is_parchased=True)
+                order_qs = Order.objects.filter(user=request.user, is_ordered = True)
+                b_add = BillingAddress.objects.filter(user=request.user)
+                address = b_add[len(b_add)-1]
+                order = order_qs[len(order_qs)-1]
+                sub_total = 0
+                quantity = 0
+                discount = 0
+                total = 0
+                delivery = 0
+
+                for cart in carts:
+
+                    sub_total += float(cart.get_total())
+                    discount += float(cart.get_discount())
+                    quantity += int(cart.quantity)
+
+                if sub_total:
+                    delivery = 15
+
+                total = sub_total-discount+delivery
+                
+                # print (carts.get_total())
+                contexts = {
+                    'carts':carts,
+                    'sub_total': sub_total,
+                    'quantity': quantity,
+                    'discount': discount,
+                    'delivery' :delivery,
+                    'total' : total,
+                    'order' : order,
+                    'address' : address,
+
+                }
+                return render(request,'./shopping/confirmation.html',contexts)
         carts = Cart.objects.filter(user=request.user, is_parchased=False)
         sub_total = 0
         quantity = 0
@@ -169,7 +206,7 @@ def checkout(request):
 
 
 # Shopping confirmation section
-
+@login_required
 def cart(request):
     if request.user.is_authenticated:
         carts = Cart.objects.filter(user=request.user,is_parchased=False)
@@ -206,13 +243,14 @@ def cart(request):
 
 
 # Shopping confirmation section
+@login_required
 def confirmation(request):
     if request.user.is_authenticated:
         carts = Cart.objects.filter(user=request.user,is_parchased=True)
         order_qs = Order.objects.filter(user=request.user, is_ordered = True)
         b_add = BillingAddress.objects.filter(user=request.user)
-        address = b_add[0]
-        order = order_qs[0]
+        address = b_add[len(b_add)-1]
+        order = order_qs[len(order_qs)-1]
         sub_total = 0
         quantity = 0
         discount = 0
@@ -247,4 +285,40 @@ def confirmation(request):
 
     return render(request,'./shopping/confirmation.html',context)
 
+
+
+def whitelist(request,pk):
+    if request.user.is_authenticated:
+        if request.method == 'GET':
+            product = Products.objects.get(pk=pk)
+            love = white_list.objects.filter(user=request.user,product_id=product, products=pk)
+
+            if love:
+
+                single_product = Products.objects.get(pk=pk)
+                like = white_list.objects.get(user=request.user,product_id=product,products=pk)
+                like.delete()
+                white_all = ''
+                context={
+                    'single_product':single_product,
+                    'white_all':white_all
+                }
+                return render(request,'products/single-product.html',context)
+            else:
+                white = white_list(user=request.user,product_id=product,products=pk)
+                white.save()
+                single_product = Products.objects.get(pk=pk)
+                white_all = white_list.objects.filter(user=request.user,products=pk)
+                context={
+                    'single_product':single_product,
+                    'white_all':white_all
+                }
+                return render(request,'products/single-product.html',context)
+    single_product = Products.objects.get(pk=pk)
+    white_all = white_list.objects.filter(user=request.user,products=pk)
+    context={
+        'single_product':single_product,
+        'white_all':white_all
+    }
+    return render(request,'products/single-product.html',context)
 

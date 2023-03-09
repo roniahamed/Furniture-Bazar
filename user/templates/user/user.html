@@ -9,46 +9,24 @@
     <div class="container py-5">
 
       {% comment %}! Start of short description {% endcomment %}
+      
       <div class="row">
         <div class="col-lg-4">
           <div class="card mb-4">
             <div class="card-body text-center">
               <img src="https://www.transparentpng.com/thumb/user/blak-frame-user-profile-png-icon--cupR3D.png" alt="avatar"
-                class="rounded-circle img-fluid" style="width: 150px;">
-              <h5 class="my-3">User Name</h5>
-              <p class="text-muted mb-1">user@mail.com</p>
-              <p class="text-muted mb-4">Bay Area, San Francisco, CA</p>
+              class="rounded-circle img-fluid" style="width: 150px;">
+                {% if user.is_authenticated %}
+              <h5 class="my-3">{{user.first_name}} {{user.last_name}}</h5>
+              <p class="text-muted mb-1">{{user.username}}</p>
+              <p class="text-muted mb-4">{{profile.about}}</p>
+              {% endif %}
               
             </div>
           </div>
           {% comment %}! End of short description {% endcomment %}
           {% comment %}! Start of social media status {% endcomment %}
-          <div class="card mb-4 mb-lg-0">
-            <div class="card-body p-0">
-              <ul class="list-group list-group-flush rounded-3">
-                <li class="list-group-item d-flex justify-content-between align-items-center p-3">
-                  <i class="fas fa-globe fa-lg text-warning"></i>
-                  <p class="mb-0">https://mdbootstrap.com</p>
-                </li>
-                <li class="list-group-item d-flex justify-content-between align-items-center p-3">
-                  <i class="fab fa-github fa-lg" style="color: #333333;"></i>
-                  <p class="mb-0">mdbootstrap</p>
-                </li>
-                <li class="list-group-item d-flex justify-content-between align-items-center p-3">
-                  <i class="fab fa-twitter fa-lg" style="color: #55acee;"></i>
-                  <p class="mb-0">@mdbootstrap</p>
-                </li>
-                <li class="list-group-item d-flex justify-content-between align-items-center p-3">
-                  <i class="fab fa-instagram fa-lg" style="color: #ac2bac;"></i>
-                  <p class="mb-0">mdbootstrap</p>
-                </li>
-                <li class="list-group-item d-flex justify-content-between align-items-center p-3">
-                  <i class="fab fa-facebook-f fa-lg" style="color: #3b5998;"></i>
-                  <p class="mb-0">mdbootstrap</p>
-                </li>
-              </ul>
-            </div>
-          </div>
+          
         </div>
         {% comment %}! End of social media status {% endcomment %}
         {% comment %}! Start of User Information {% endcomment %}
@@ -57,37 +35,46 @@
             <div class="card-body">
               <div class="row">
                 <div class="col-sm-3">
-                  <p class="mb-0">Full Name</p>
+                  <p class="mb-0">Full Name :</p>
                 </div>
                 <div class="col-sm-9">
-                  <p class="text-muted mb-0">User Name</p>
+                  <p class="text-muted mb-0">{{user.first_name}} {{user.last_name}}</p>
                 </div>
               </div>
               <hr>
               <div class="row">
                 <div class="col-sm-3">
-                  <p class="mb-0">Email</p>
+                  <p class="mb-0"> User Name :</p>
                 </div>
                 <div class="col-sm-9">
-                  <p class="text-muted mb-0">example@example.com</p>
+                  <p class="text-muted mb-0">{{user.username}}</p>
                 </div>
               </div>
               <hr>
               <div class="row">
                 <div class="col-sm-3">
-                  <p class="mb-0">Mobile</p>
+                  <p class="mb-0">Email :</p>
                 </div>
                 <div class="col-sm-9">
-                  <p class="text-muted mb-0">01234567</p>
+                  <p class="text-muted mb-0">{{user.email}}</p>
                 </div>
               </div>
               <hr>
               <div class="row">
                 <div class="col-sm-3">
-                  <p class="mb-0">Address</p>
+                  <p class="mb-0">Mobile :</p>
                 </div>
                 <div class="col-sm-9">
-                  <p class="text-muted mb-0">Address</p>
+                  <p class="text-muted mb-0">{{profile.mobile}}</p>
+                </div>
+              </div>
+              <hr>
+              <div class="row">
+                <div class="col-sm-3">
+                  <p class="mb-0">Address :</p>
+                </div>
+                <div class="col-sm-9">
+                  <p class="text-muted mb-0">{{profile.address}}</p>
                 </div>
               </div>
             </div>
@@ -99,36 +86,46 @@
 
           {% comment %}! update section {% endcomment %}
           <section style="padding-top:1px">
-            <h2 style="color:#ff3368;">Update Your Profile</h2>
-            <hr>
-            <div class="row">
+            <form action="" method="POST" validation>
+              {% csrf_token %}
+            <h2 >Update Your Profile:</h2>
+            {% comment %} <div class="row">
               <div class="col-sm-3">
-                <p class="mb-0">Full Name</p>
+                <p class="mb-0">Profile image:</p>
               </div>
               <div class="col-sm-9">
-                <input type="text" class="form-control" id="name" name="username" value=""
-                                        placeholder="Enter Your Full Name">
+                <input type="file" name="image" value="{{profile.image}}"
+                                        placeholder="Image">
               </div>
-            </div>
-            <hr>
+            </div> {% endcomment %}
+            <hr>          
             <div class="row">
               <div class="col-sm-3">
-                <p class="mb-0">Email</p>
+                <p class="mb-0">About</p>
               </div>
               <div class="col-sm-9">
-                <input type="email" class="form-control" id="password" name="email" value=""
-                                        placeholder="Email" >
+                <input type="text" class="form-control" id="name" name="about" value="{{profile.about}}"
+                                        placeholder="About">
               </div>
             </div>
-            
-            <hr>
+            <hr>           
             <div class="row">
               <div class="col-sm-3">
                 <p class="mb-0">Mobile</p>
               </div>
               <div class="col-sm-9">
-                <input type="text" class="form-control" id="mobilenumber" name="mobilenumber" value=""
+                <input type="text" class="form-control" id="mobilenumber" name="phone" value="{{profile.mobile}}"
                                         placeholder="Mobile Number" >
+              </div>
+            </div>
+            <hr>
+            <div class="row">
+              <div class="col-sm-3">
+                <p class="mb-0">Address</p>
+              </div>
+              <div class="col-sm-9">
+                <input type="text" class="form-control" id="mobilenumber" name="address" value="{{profile.address}}"
+                                        placeholder="Address" >
               </div>
             </div>
             <hr>
@@ -148,14 +145,18 @@
               </div>
               <div class="col-sm-9">
                 <input type="password" class="form-control" id="previous_password" name="previous_password" value=""
-                                        placeholder="Enter Your Previous Password To Confirm Changes" >
+                                        placeholder="Enter Your Previous Password" required >
               </div>
             </div>
             <hr>
+            {% for massage in messages  %}
+            <h5 style='color:red; margin-left:27%;'>{{massage}}! </h5>
+            {% endfor %}
             <div class="row">
               <div class = "center-block" style="margin-left: 35%;">
-                <button type="button" class="btn" style="color:white;background:#ff3368;" type="submit">Update Profile</button>
               </div>
+              <button type="submit" value="submit" class="btn_3">Update Profile</button>
+            </form>
           </section>
           
               
@@ -163,6 +164,7 @@
           </div>
         </div>
       </div>
+
     </div>
   </section>
 
