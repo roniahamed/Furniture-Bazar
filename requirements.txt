@@ -1,0 +1,9 @@
+asgiref==3.6.0
+Django==4.1.7
+mysqlclient==2.1.1
+numpy==1.24.2
+Pillow==9.4.0
+PyMySQL==1.0.2
+pystache==0.6.0
+sqlparse==0.4.3
+static==1.1.1
